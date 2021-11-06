@@ -1,0 +1,38 @@
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>C:\Users\saad\Documents\NetBeansProjects\GestioneEntreprise\dist\GestioneEntreprise.jar</jar>
+  <outfile>C:\Users\saad\Documents\NetBeansProjects\GestioneEntreprise\dist\islatis.exe</outfile>
+  <errTitle>Veuillez installer le JDK 1.8.0 et java jre pour exécuter cette application</errTitle>
+  <cmdLine></cmdLine>
+  <chdir>.</chdir>
+  <priority>normal</priority>
+  <downloadUrl>http://java.com/download</downloadUrl>
+  <supportUrl></supportUrl>
+  <customProcName>false</customProcName>
+  <stayAlive>false</stayAlive>
+  <manifest></manifest>
+  <icon>C:\Users\saad\Downloads\islatis.ico</icon>
+  <singleInstance>
+    <mutexName>Islatis Application</mutexName>
+    <windowTitle>Islatis Application</windowTitle>
+  </singleInstance>
+  <jre>
+    <path></path>
+    <minVersion>1.8.0</minVersion>
+    <maxVersion></maxVersion>
+    <jdkPreference>preferJre</jdkPreference>
+  </jre>
+  <versionInfo>
+    <fileVersion>1.0.0.0</fileVersion>
+    <txtFileVersion>1.0.0.0</txtFileVersion>
+    <fileDescription>Islatis application</fileDescription>
+    <copyright>@Saadelghanemy</copyright>
+    <productVersion>1.0.0.0</productVersion>
+    <txtProductVersion>1.0.0.0</txtProductVersion>
+    <productName>Islatis </productName>
+    <companyName>Islatis</companyName>
+    <internalName>Islatis application</internalName>
+    <originalFilename>Islatis.exe</originalFilename>
+  </versionInfo>
+</launch4jConfig>

@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Clients" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f233a8c9-cd2a-4b46-82d3-4e165c78b0ef">
+	<property name="ireport.zoom" value="1.0000000000000007"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID_LOC" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     CLIENT."IDCLT" AS CLIENT_IDCLT,
+     CLIENT."NOM" AS CLIENT_NOM,
+     CLIENT."PRENOM" AS CLIENT_PRENOM,
+     CLIENT."DATE_REND" AS CLIENT_DATE_REND,
+     CLIENT."EMAIL" AS CLIENT_EMAIL,
+     CLIENT."TEL" AS CLIENT_TEL,
+     CLIENT."PRIX_SER" AS CLIENT_PRIX_SER,
+     CLIENT."VERSEMENT" AS CLIENT_VERSEMENT,
+     CLIENT."ID_LOC" AS CLIENT_ID_LOC,
+     LOCATION."ID_LOC" AS LOCATION_ID_LOC,
+     LOCATION."RUE_ADRESSE" AS LOCATION_RUE_ADRESSE,
+     LOCATION."VILLE" AS LOCATION_VILLE,
+     LOCATION."CODE_POSTAL" AS LOCATION_CODE_POSTAL
+FROM
+     "MOH"."LOCATION" LOCATION INNER JOIN "MOH"."CLIENT" CLIENT ON LOCATION."ID_LOC" = CLIENT."ID_LOC"
+where LOCATION."ID_LOC"=$P{ID_LOC}]]>
+	</queryString>
+	<field name="CLIENT_IDCLT" class="java.math.BigDecimal"/>
+	<field name="CLIENT_NOM" class="java.lang.String"/>
+	<field name="CLIENT_PRENOM" class="java.lang.String"/>
+	<field name="CLIENT_DATE_REND" class="java.sql.Timestamp"/>
+	<field name="CLIENT_EMAIL" class="java.lang.String"/>
+	<field name="CLIENT_TEL" class="java.lang.String"/>
+	<field name="CLIENT_PRIX_SER" class="java.math.BigDecimal"/>
+	<field name="CLIENT_VERSEMENT" class="java.math.BigDecimal"/>
+	<field name="CLIENT_ID_LOC" class="java.math.BigDecimal"/>
+	<field name="LOCATION_ID_LOC" class="java.math.BigDecimal"/>
+	<field name="LOCATION_RUE_ADRESSE" class="java.lang.String"/>
+	<field name="LOCATION_VILLE" class="java.lang.String"/>
+	<field name="LOCATION_CODE_POSTAL" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="125" splitType="Stretch">
+			<elementGroup>
+				<elementGroup>
+					<staticText>
+						<reportElement uuid="6349649f-5841-48a6-8547-9f3870746423" x="271" y="52" width="174" height="38"/>
+						<textElement>
+							<font size="20"/>
+						</textElement>
+						<text><![CDATA[S.A.R.L.A.U]]></text>
+					</staticText>
+					<staticText>
+						<reportElement uuid="c65e0eff-59cb-4c1f-ab88-420483a74ace" x="99" y="31" width="172" height="60"/>
+						<textElement>
+							<font size="40" isBold="true"/>
+						</textElement>
+						<text><![CDATA[ISLATIS]]></text>
+					</staticText>
+				</elementGroup>
+			</elementGroup>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="193" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement uuid="4dbc949d-54fb-4cf4-9a40-64461b2d5114" x="20" y="54" width="501" height="107" backcolor="#F3735C"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="e3eca908-625a-4d0a-adc5-c7c5c792546f" x="32" y="11" width="100" height="29"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Client:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e4b4aa46-7cd6-46e1-84ef-03237f18859b" x="52" y="131" width="80" height="20"/>
+				<textElement>
+					<font size="15" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Tele:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6158a7bb-2a94-446c-984a-f191997ca604" x="52" y="99" width="69" height="20"/>
+				<textElement>
+					<font size="15" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Prenom:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9bb6477a-b9cb-4154-87cb-fc106851cb4f" x="52" y="68" width="74" height="20"/>
+				<textElement>
+					<font size="15" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Nom:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="97f98851-ca0f-433c-9486-3a8522eb7f07" x="150" y="68" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CLIENT_NOM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="36abb383-a580-425c-a67b-117c282fff41" x="150" y="99" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CLIENT_PRENOM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0b274cec-9ead-47b8-ac2f-0b25d154ea3e" x="150" y="131" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CLIENT_TEL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="94410174-93d4-410d-bb1d-2136a60b8d51" x="345" y="99" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CLIENT_DATE_REND}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a4d3c54d-0b86-487f-80b6-07b55daabad0" x="310" y="68" width="157" height="20"/>
+				<textElement>
+					<font size="15" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Date de rendez_vous]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="dc54df45-4595-4af5-89b3-bddb0eacaf39" x="0" y="0" width="184" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Adresse]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fe176355-d912-4049-aeb9-178a496ba609" x="184" y="0" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[VILLE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="75cefbe2-4268-469f-90a3-f1a0df6c10f5" x="284" y="0" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[CODE POSTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a45f7f1e-4f71-4ed7-89fb-e2bbdf99e93f" x="384" y="0" width="171" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[CLIENT_EMAIL]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="253" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="3b8d5f54-16b5-4453-bd41-778dd2bac36a" x="116" y="128" width="329" height="35"/>
+				<textElement textAlignment="Justified">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[Residence Al amane GH! Imm.253 Appt1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e14c14a8-a2dd-4b5a-b8d9-8dca4b429649" x="150" y="163" width="248" height="26"/>
+				<textElement textAlignment="Center">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[205000 Ain sebaa Casablanca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="02c36211-cf16-4c6e-b68d-9b45fa95f016" x="150" y="190" width="248" height="27"/>
+				<textElement textAlignment="Center">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[Tel:052266620208]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="8677f529-9d68-4ddd-8f7e-620eb6761a4c" x="0" y="0" width="184" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{LOCATION_RUE_ADRESSE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4a843108-b193-4659-b79e-6e6b0c600820" x="184" y="0" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{LOCATION_VILLE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4b4917a5-2d73-4820-b5f9-567d2ad2d672" x="284" y="0" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{LOCATION_CODE_POSTAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3f585777-b7b9-4fd5-881a-6c673b4ab46b" x="384" y="0" width="171" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{CLIENT_EMAIL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f5058252-4c71-4945-9610-c1b44bf83076" x="284" y="70" width="114" height="20"/>
+				<textElement>
+					<font size="15" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Prix de service:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="1c704484-3342-4b3b-b9b6-ff0e8e3287bf" x="421" y="38" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CLIENT_VERSEMENT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="3d71fe79-c71e-4387-9f62-384853c320fb" x="284" y="38" width="114" height="20"/>
+				<textElement>
+					<font size="15" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[versment:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="7e79ecbe-88e3-4ba1-adf0-eb71d92c324d" x="421" y="70" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CLIENT_PRIX_SER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="140" splitType="Stretch"/>
+	</summary>
+</jasperReport>

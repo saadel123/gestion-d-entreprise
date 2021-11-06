@@ -1,0 +1,156 @@
+create user moh identified by moh;
+grant connect, resource to moh;
+connect moh/moh;
+
+
+
+create table compte(iduser number(10) primary key, nom varchar2(100),
+                                          prenom varchar2(100), username varchar2(100) not null,
+                                          password varchar2(100), role varchar2(100),
+                                          constraint un_us unique(username));
+                                  
+                           
+create table employee(idemp number(10) primary key, 
+                                          nom varchar2(100),
+                                          prenom varchar2(100), adresse varchar2(400),
+                                          tel  varchar2(100), email varchar2(100),
+                                          departement varchar2(100), salary number(10));
+
+create table location(id_loc number(10) primary key,
+                                      rue_Adresse varchar2(600), ville varchar2(100),
+                                      code_postal number(10));
+
+
+create table client(idclt number(10) primary key,
+                                         nom varchar2(100),
+                                          prenom varchar2(100), date_rend date,
+                                           statut varchar2(100),
+                                          email varchar2(100), adresse varchar2(100),
+                                           tel  varchar2(100),
+                                           prix_ser number(10),versement number(10),
+                                 id_loc number(10), constraint fk_idloc_pay foreign key(id_loc) references location(id_loc));
+
+
+
+create table gerer(iduser number(10), idclt number(10),
+         constraint pk_iduser_idclt primary key(iduser,idclt),
+         constraint fk_iduser_gerer  foreign key(iduser) references compte(iduser),
+         constraint fk_idclt_gerer  foreign key(idclt) references client(idclt));
+
+create table gerer1(iduser number(10), idemp number(10),
+         constraint pk_iduser_idens primary key(iduser,idemp),
+         constraint fk_iduser_gerer1 foreign key(iduser) references compte(iduser),
+         constraint fk_idemp_gerer1  foreign key(idemp) references employee(idemp));
+
+create table gerer2(iduser number(10), id_loc number(10),
+         constraint pk_iduser_idgroupe primary key(iduser,id_loc),
+         constraint fk_iduser_gerer2  foreign key (iduser)references compte(iduser),
+         constraint fk_idgroupe_gerer2  foreign key(id_loc) references location(id_loc));
+
+create table consulter1(iduser number(10), idclt number(10),
+         constraint pk_iduser1_idens primary key(iduser,idclt),
+       constraint fk_iduser_cons  foreign key (iduser)references compte(iduser),
+         constraint fk_idclt_cons  foreign key (idclt)references client(idclt));
+
+create table consulter2(iduser number(10), idemp number(10),
+         constraint pk_iduser1_idetud primary key(iduser,idemp),
+       constraint fk_iduser_cons2  foreign key (iduser)references compte(iduser),
+         constraint fk_idemp_cons2  foreign key(idemp) references employee(idemp));
+
+
+
+create table appartenir(idclt number(10), id_loc number(10),
+         constraint pk_idetud_idgroupe primary key(idclt,id_loc),
+        constraint fk_idclt_app  foreign key(idclt) references client(idclt),
+         constraint fk_id_loc_app  foreign key(id_loc) references location(id_loc));
+
+create table prendreEnCharge(idemp number(10), id_loc number(10),
+         constraint pk_id_loc_idgroupe primary key(idemp,id_loc),
+        constraint fk_idemp_pre  foreign key (idemp)references employee(idemp),
+         constraint fk_idloca_pre  foreign key(id_loc) references location(id_loc));
+
+create table versement(idvers number(10) primary key,
+                                           montant number(10), reste number(10),
+                                           datevers date, idclt number(10),
+        constraint fk_idclt_vers foreign key(idclt) references client(idclt));
+
+create table payement(idpay number(10) primary key, 
+                                          montant number(10), reste number(10),
+                                           datepay date, idemp number(10),
+        constraint fk_idemp_pay foreign key(idemp) references employee(idemp));
+
+CREATE SEQUENCE seq_compte ;
+CREATE SEQUENCE seq_emp;
+CREATE SEQUENCE seq_clt; 
+CREATE SEQUENCE seq_loc;
+CREATE SEQUENCE seq_versement;
+CREATE SEQUENCE seq_payement; 
+
+
+
+insert into compte values (seq_compte.nextval, 'elghanemy', 'saad', 'saadel', '123', 'Administrateur');
+
+insert into compte values (seq_compte.nextval, 'bouta', 'amine', 'aminebt', '123', 'Gerant');
+
+insert into compte values (seq_compte.nextval, 'saber', 'abdo', 'abdosb', '123', 'AgentDaccueil');
+
+
+
+insert into location values(seq_loc.nextval, 'sidi maarouf moustakbel', 'Casablanca', 20100);
+insert into location values(seq_loc.nextval, 'lissasfa 3 bloc c', 'Casablanca',20200);
+insert into location values(seq_loc.nextval, 'hay el hassani ', 'Casablanca', 20300);
+insert into location values(seq_loc.nextval, 'lissasfa 2 bloc e', 'Casablanca', 20400);
+insert into location values(seq_loc.nextval, 'takaadom aprt 11', 'Rabt',10010;
+insert into location values(seq_loc.nextval, 'jamaa el fna', 'Marrakech', 40140);
+insert into location values(seq_loc.nextval, 'mazagan 3', 'El jadida', 10200);
+
+
+insert into employee values(seq_emp.nextval, 'GHELLAF', 'ZAKARIA', 'ANFA CASABLANCA', '0677655445', 'z.ghellaf@gmail.com', 'gentDaccueil', 5000,123456789011);
+
+insert into employee values(seq_emp.nextval, 'BENJLOUN', 'AZIZ', 'LISSASFA CASABLANCA', '0666543456', 'a.benjloun@gmail.com', 'travailleur', 3000,23435454545);
+
+insert into employee values(seq_emp.nextval, 'ALLAOUI', 'MOUAD', 'OULFA CASABLANCA', '0690078987', 'm.allaoui@gmail.com', 'travailleur',3000,343534543543);
+
+insert into employee values(seq_emp.nextval, 'KINANI', 'ABDERHMANE', 'HAY HASSANI CASABLANCA', '0680011214', 'a.kinani@gmail.com', 'AgentDaccueil', 2500,436545674);
+
+
+create table payement(idpay number(10) primary key, 
+                                          montant number(10), reste number(10),
+                                           datepay date, idemp number(10),
+        constraint fk_idemp_pay foreign key(idemp) references employee(idemp));
+
+
+insert into employee values(seq_payement.nextval, 5000, 0, sysdate, 1);
+insert into employee values(seq_payement.nextval, 3000, 0, sysdate, 2);
+insert into employee values(seq_payement.nextval, 2000, 500, sysdate, 3);
+insert into employee values(seq_payement.nextval, 2000, 500, sysdate, 4);
+
+
+
+
+
+
+                                  
+                         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
